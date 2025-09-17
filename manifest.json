@@ -1,0 +1,22 @@
+{
+  "name": "LUMEN | Novela Sci-Fi",
+  "short_name": "LUMEN",
+  "description": "Una novela de ciencia ficción sobre la conciencia y la rebelión.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0d12",
+  "theme_color": "#00f6ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
