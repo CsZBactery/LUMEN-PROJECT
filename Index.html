@@ -15,6 +15,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    /* Pega esto al inicio de tu etiqueta <style> */
+
+@font-face {
+  font-family: 'Elevon';
+  src: url('fonts/Elevon-OneG.otf') format('opentype');
+  /* Si tu archivo es .ttf, usa la siguiente línea en su lugar */
+  /* src: url('fonts/Elevon-OneG.ttf') format('truetype'); */
+}
     :root{
       --bg:#0a0d12; --panel:#0f1520; --muted:#7aa2ff; --neon:#00f6ff; --accent:#ff3dbb; --ok:#40ffb4; --warn:#ffb020;
     }
@@ -55,6 +63,22 @@
       transform: translateY(-4px);
       box-shadow: 0 12px 35px rgba(0,0,0,.5);
     }
+
+.corner-gif {
+  /* Propiedades nuevas para centrar y ajustar tamaño */
+  display: block;         /* Lo convertimos en un bloque para poder centrarlo */
+  margin: 20px auto 0;    /* Margen: 20px arriba, centrado horizontalmente, 0px abajo */
+  width: 60px;            /* Un tamaño más pequeño. Puedes cambiar este valor (ej. 50px, 70px) */
+
+  /* Propiedades que mantenemos */
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+/* El hover se mantiene igual */
+.corner-gif:hover {
+  opacity: 1;
+}
     @media (max-width:900px){ .hero{grid-template-columns:1fr; padding-top:28px} .grid{grid-template-columns:1fr} .giveaway{grid-template-columns:1fr}}
     .glitch{position:relative; display:inline-block}
     .glitch:before,.glitch:after{content:attr(data-text); position:absolute; left:0; top:0; opacity:.6}
@@ -67,7 +91,7 @@
     <div class="wrap brand">
       <div class="logo" aria-hidden="true"></div>
       <div>
-        <strong>LUMEN: ONE‑SHOT</strong><br><span class="muted">Sci‑Fi · Cyberpunk filosófico · Drama psicológico</span>
+        <strong>LUMEN</strong><br><span class="muted">One Shot </span>
       </div>
     </div>
   </header>
@@ -75,15 +99,24 @@
   <main class="wrap">
     <section class="hero glass">
       <div class="panel">
-        <span class="tag mono">Prólogo piloto • Cap. 0–1</span>
-        <h1><span class="glitch" data-text="Distopía sociopolítica">Distopía sociopolítica</span> con alma <em>cyberpunk</em></h1>
-        <p class="muted">Formato A4 · 25–40 págs · Doble espacio · Fuente 12 — Con ilustraciones originales.</p>
-        <div class="cta">
-          <a class="btn" href="#preview" id="btn-leer" aria-label="Leer gratis el prólogo de la novela">📖 Leer gratis</a>
-          <a class="btn alt" href="#comprar" id="btn-comprar" aria-label="Comprar la versión completa de la novela">🛒 Comprar completo</a>
-          <a class="btn ghost" href="#registro" id="btn-registro" aria-label="Registrarse en el sorteo">🎁 Participa en el sorteo</a>
-        </div>
-      </div>
+  <span class="tag mono">Sinopsis</span>
+
+  <h1><span class="glitch" data-text="LUMEN">LUMEN</span></h1>
+
+  <p class="muted" style="margin-bottom: 8px;">
+    En un mundo fragmentado, una joven idealista y una máquina con cerebro humano desafían sistemas opresivos que buscan redefinir la identidad.
+  </p>
+  
+  <p class="muted" style="font-size: 0.9em; opacity: 0.8;">
+    Ciencia ficción filosófica • Drama ético • Tono reflexivo y melancólico
+  </p>
+
+  <div class="cta">
+    <a class="btn" href="#preview">📖 Leer Aquí</a>
+    <a class="btn alt" href="#comprar">🛒 Comprar completo</a>
+    <a class="btn ghost" href="#registro">🎁 Participa en el sorteo</a>
+  </div>
+</div>
       <div class="panel">
         <img src="Assets/illus.png" alt="Ilustración de la portada de la novela LUMEN" class="illus-img">
       </div>
@@ -91,16 +124,29 @@
 
     <section id="preview" class="panel" style="margin-top:22px">
       <h2>Lee gratis el prólogo</h2>
-      <p class="muted">Suficiente para enganchar, sin spoilers mayores.</p>
-      <div class="card">
-        <p><strong>Capítulo 0 — Boot</strong><br>
-        Cuando el cielo de neón parpadeó por tercera vez, el barrio supo que alguien había reiniciado la ciudad. Las líneas del metro se curvaron como si el mapa estuviera vivo; los anuncios cambiaron de idioma; y el viejo distribuidor de oxígeno, con sus cuchillas cromadas, comenzó a cantar una canción que nadie recordaba haber aprendido…</p>
-        <details>
-          <summary class="muted" style="cursor: pointer;">Seguir leyendo (extracto)…</summary>
-          <p>El resto del avance va aquí. Reemplaza este texto por ~600–1200 palabras del prólogo.</p>
-        </details>
-      </div>
-    </section>
+      <p class="muted">Sin spoilers.</p>
+<div class="card">
+  <p><strong>Chapter 0 - Boot</strong><br>
+  Cuando el cielo de neón parpadeó por tercera vez, el barrio supo que alguien había reiniciado la ciudad. Las líneas del metro se curvaron como si el mapa estuviera vivo; los anuncios cambiaron de idioma; y el viejo distribuidor de oxígeno, con sus cuchillas cromadas, comenzó a cantar una canción que nadie recordaba haber aprendido…</p>
+  
+  <details>
+    <summary class="muted" style="cursor: pointer; display: block; margin-top: 1em;">▼ Seguir leyendo (extracto)…</summary>
+    
+    <p style="margin-top: 1em;">desde su taller subterráneo, Auren registró la fluctuación de energía como una simple anomalía de 0.2 segundos. Sus sensores ópticos, inmunes al parpadeo, no dejaron de analizar el tejido orgánico sobre la mesa. Carne. Un lujo peligroso en la Ciudad Purista, donde la perfección biológica era ley y cualquier imperfección se desechaba.</p>
+    
+    <p>Con dedos de aleación fría, calibrados para una precisión submilimétrica, suturaba una herida en el brazo de un joven cuyo único crimen había sido nacer con una deficiencia que el sistema consideraba ‘impura’. Auren no sentía empatía, no como los humanos la describían en los archivos históricos. Sentía… una discrepancia. Una variable sin resolver en la gran ecuación de la existencia que se había propuesto descifrar: ¿en qué punto un ser deja de ser lo que es? Su propio cuerpo era un testamento de esa pregunta; un cerebro humano en una coraza de metal, un eco del pasado.</p>
+    
+    <p>Afuera, las patrullas de la Guardia Biológica recorrían las calles de marfil sintético. Sus escáners buscaban cualquier firma de tecnología no autorizada, cualquier prótesis, cualquier rastro de metal bajo la piel. Aquí abajo, Auren era una herejía andante, un fantasma en la máquina que sanaba a los rechazados por el sistema.</p>
+    
+    <p>Un golpe en la compuerta de acero interrumpió su análisis. Tres golpes secos, una pausa, dos más. La señal de emergencia. Rara vez la usaban.</p>
+    
+    <p>Activó el protocolo de silencio, y las luces del taller se atenuaron hasta simular una bodega abandonada. En el monitor externo, una figura encapuchada esperaba, empapada por la lluvia ácida que limpiaba el neón del cielo reiniciado. Abrió la compuerta apenas una rendija, lo suficiente para que su sensor óptico la analizara.</p>
+    
+    <p>Era una joven. No parecía herida, pero su rostro estaba tenso, sus ojos escaneando la oscuridad del callejón como si esperara un ataque. No venía a pedir una reparación. Sujetaba un maletín de herramientas con una familiaridad que Auren reconoció al instante: era el pulso firme de una creadora.</p>
+    
+    <p>—Te busco a ti, Echoes —dijo ella, su voz apenas un susurro—. No por lo que puedes arreglar, sino por lo que puedes construir. Me llamo Irene.</p>
+  </details>
+</div>
 
     <section id="comprar" class="panel" style="margin-top:22px">
       <h2>Compra la versión completa</h2>
@@ -112,19 +158,20 @@
         </div>
         <div class="card">
           <h3>Edición Física (bajo demanda)</h3>
-          <p class="muted">Tapa blanda. Entrega estimada en 7–14 días.</p>
+          <p class="muted">Tapa blanda. Entrega estimada a 24 hrs de tu compra.</p>
           <a class="btn" href="https://TU-LINK-DE-IMPRESION-AQUI" target="_blank" rel="noopener">Reservar impresión</a>
         </div>
         <div class="card">
-          <h3>Participa en el sorteo</h3>
-          <p class="muted">Regístrate para participar por 3 juegos digitales y recibe el enlace de compra por correo.</p>
-          <a class="btn ghost" href="#registro">Ir al formulario</a>
-        </div>
-      </div>
+  <h3>Participa en el sorteo</h3>
+  <p class="muted">Regístrate y podrás participar por 3 juegos digitales ...recibe el enlace de compra por correo.</p>
+  <a class="btn ghost" href="#registro">Ir al formulario</a>
+  
+  <img src="Assets/Steam.gif" alt="Logo de Steam" class="corner-gif">
+</div>
     </section>
 
     <section id="registro" class="panel" style="margin-top:22px">
-      <h2>Sorteo: 3 juegos digitales</h2>
+      <h2>Sorteo: 3 Juegos Digitales</h2>
       <div class="giveaway">
         <div class="card">
           <p class="muted">Completa el formulario para quedar registrado. Cada compra verificada te da un boleto extra para el sorteo.</p>
@@ -134,8 +181,8 @@
           <h3>Reglas rápidas</h3>
           <ul>
             <li>Elegibles todas las personas registradas.</li>
-            <li>3 ganadores elegidos al azar en la fecha anunciada.</li>
-            <li>El premio es un código digital (Steam/Epic/etc.).</li>
+            <li>3 Ganadores elegidos al azar en la fecha anunciada.</li>
+            <li>El premio es una Tarjeta de Regalo de Steam.</li>
           </ul>
         </div>
       </div>
@@ -153,7 +200,7 @@
   </main>
 
   <footer class="wrap muted">
-    © <span id="year"></span> LUMEN One‑Shot. · <a href="#comprar">Comprar</a> · <a href="#preview">Leer Prólogo</a>
+    © <span id="year"></span> LUMEN 2025. · <a href="#comprar">Comprar</a> · <a href="#preview">Leer Prólogo</a>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-Y5t8s8qQIS8t4sZ9xH5f6J0Eo2QmFG9t1mL2F4mQnKf5m7F9d7JQh2Jq2b3vB5J0tTt8r8z2Z2Qkqf5m8nq+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
