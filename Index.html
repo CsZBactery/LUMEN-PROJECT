@@ -15,14 +15,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Pega esto al inicio de tu etiqueta <style> */
+    /* --- DECLARACIÓN DE FUENTES PERSONALIZADAS --- */
+    @font-face {
+      font-family: 'Elevon';
+      src: url('fonts/Elevon-OneG.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'A-Space';
+      src: url('fonts/A-Space Regular Demo.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'A-Space Light';
+      src: url('fonts/A-Space Light Demo.otf') format('opentype');
+    }
 
-@font-face {
-  font-family: 'Elevon';
-  src: url('fonts/Elevon-OneG.otf') format('opentype');
-  /* Si tu archivo es .ttf, usa la siguiente línea en su lugar */
-  /* src: url('fonts/Elevon-OneG.ttf') format('truetype'); */
-}
+    /* --- ESTILOS GENERALES --- */
     :root{
       --bg:#0a0d12; --panel:#0f1520; --muted:#7aa2ff; --neon:#00f6ff; --accent:#ff3dbb; --ok:#40ffb4; --warn:#ffb020;
     }
@@ -40,58 +47,160 @@
     .tag{display:inline-block; border:1px solid rgba(0,246,255,.3); padding:6px 10px; border-radius:12px; color:var(--muted); background:rgba(15,21,32,.6)}
     .glass{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.4)}
     .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
-    .btn{--glow:var(--neon); padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); color:#0A0D12; background:linear-gradient(180deg, var(--glow), #aefbff); box-shadow:0 0 16px rgba(0,246,255,.4), inset 0 0 6px rgba(255,255,255,.3); font-weight:700}
+    
+    /* --- ESTILOS DE BOTONES CON EFECTO --- */
+    .btn {
+      --glow: var(--neon);
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: #0A0D12;
+      background: linear-gradient(180deg, var(--glow), #aefbff);
+      box-shadow: 0 0 16px rgba(0, 246, 255, .4), inset 0 0 6px rgba(255, 255, 255, .3);
+      font-family: 'A-Space Light', sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      
+      /* --- PREPARACIÓN PARA LA ANIMACIÓN --- */
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease-in-out, color 0.4s ease-in-out;
+    }
     .btn.alt{--glow:var(--accent); background:linear-gradient(180deg, var(--glow), #ffc1ec);}
     .btn.ghost{color:var(--neon); background:transparent; border-color:rgba(0,246,255,.35)}
     .panel{padding:20px}
     .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-    .card{padding:18px; border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12)}
+    .card {
+      position: relative;
+      padding: 18px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .04));
+      border: 1px solid rgba(0, 246, 255, .25);
+      box-shadow: 0 0 20px rgba(0, 246, 255, 0.1);
+      transition: all 0.25s ease-in-out;
+    }
     .muted{color:#9fb7d2}
     .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:.92em}
     .illus-img{aspect-ratio:4/3; width:100%; border-radius:12px; object-fit: cover; border:1px solid rgba(0,246,255,.2)}
-    .giveaway{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
-    .code{white-space:pre-wrap; background:#0c1118; border:1px solid rgba(255,255,255,.12); padding:14px; border-radius:10px}
-    footer{padding:28px 16px; color:#9fb7d2; text-align: center;}
-    .btn, a, .card {
-      transition: all 0.25s ease-in-out;
+    
+    /* --- MODIFICACIONES DE TEXTO Y TÍTULO --- */
+    #main-title {
+      font-family: 'A-Space', sans-serif;
+      font-size: 1em;
+      letter-spacing: 4px;
+      text-shadow: 0 0 8px rgba(0, 246, 255, 0.7);
     }
-    .btn:hover, a:hover {
+    .sinopsis-texto {
+      font-family: 'Elevon', sans-serif;
+    }
+
+    /* --- ESTILOS HOVER --- */
+    a:hover {
+      filter: brightness(1.15);
+    }
+    .btn:hover {
       transform: translateY(-2px);
       filter: brightness(1.15);
+      color: transparent !important; /* Hacemos el texto invisible para el efecto */
     }
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 35px rgba(0,0,0,.5);
+      box-shadow: 0 4px 30px rgba(0, 246, 255, 0.2);
+    }
+    .corner-gif {
+      display: block;
+      margin: 20px auto 0;
+      width: 60px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+    .corner-gif:hover {
+      opacity: 1;
+    }
+    
+    /* --- ESTILOS PARA EL FONDO DE VIDEO --- */
+    #video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
     }
 
-.corner-gif {
-  /* Propiedades nuevas para centrar y ajustar tamaño */
-  display: block;         /* Lo convertimos en un bloque para poder centrarlo */
-  margin: 20px auto 0;    /* Margen: 20px arriba, centrado horizontalmente, 0px abajo */
-  width: 60px;            /* Un tamaño más pequeño. Puedes cambiar este valor (ej. 50px, 70px) */
+    /* AÑADE ESTA NUEVA REGLA para crear la capa oscura */
+  #video-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Negro con 60% de opacidad */
+  }
 
-  /* Propiedades que mantenemos */
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
-
-/* El hover se mantiene igual */
-.corner-gif:hover {
-  opacity: 1;
-}
+    #video-background video {
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+    }
+    
     @media (max-width:900px){ .hero{grid-template-columns:1fr; padding-top:28px} .grid{grid-template-columns:1fr} .giveaway{grid-template-columns:1fr}}
     .glitch{position:relative; display:inline-block}
     .glitch:before,.glitch:after{content:attr(data-text); position:absolute; left:0; top:0; opacity:.6}
     .glitch:before{transform:translate(2px,0); color:var(--accent)}
     .glitch:after{transform:translate(-2px,0); color:var(--neon)}
+
+    /* --- EFECTO DE PARTÍCULAS PARA BOTONES --- */
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      box-shadow: 
+        -3px -3px 5px var(--neon), 3px 3px 5px var(--accent),
+        -5px -5px 15px var(--neon), 5px 5px 15px var(--accent),
+        -10px -10px 30px var(--neon), 10px 10px 30px var(--accent);
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+      transform: scale(0);
+    }
+    .btn:hover::before {
+      animation: explode 0.8s ease-in-out forwards;
+    }
+    @keyframes explode {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
+  <div id="video-background">
+    <video autoplay loop muted playsinline src="Videos/CybVid.mp4" type="video/mp4"></video>
+  </div>
+  
   <header>
     <div class="wrap brand">
       <div class="logo" aria-hidden="true"></div>
       <div>
-        <strong>LUMEN</strong><br><span class="muted">One Shot </span>
+        <strong><span id="main-title">LUMEN</span></strong><br><span class="muted">One Shot</span>
       </div>
     </div>
   </header>
@@ -99,24 +208,22 @@
   <main class="wrap">
     <section class="hero glass">
       <div class="panel">
-  <span class="tag mono">Sinopsis</span>
+        <span class="tag mono">Sinopsis</span>
+        <h1><span class="glitch" data-text="LUMEN">LUMEN</span></h1>
+        
+        <p class="muted sinopsis-texto" style="margin-bottom: 8px;">
+          En un mundo fragmentado, una joven idealista y una máquina con cerebro humano desafían sistemas opresivos que buscan redefinir la identidad.
+        </p>
+        <p class="muted sinopsis-texto" style="font-size: 0.9em; opacity: 0.8;">
+          Ciencia ficción filosófica • Drama ético • Tono reflexivo y melancólico
+        </p>
 
-  <h1><span class="glitch" data-text="LUMEN">LUMEN</span></h1>
-
-  <p class="muted" style="margin-bottom: 8px;">
-    En un mundo fragmentado, una joven idealista y una máquina con cerebro humano desafían sistemas opresivos que buscan redefinir la identidad.
-  </p>
-  
-  <p class="muted" style="font-size: 0.9em; opacity: 0.8;">
-    Ciencia ficción filosófica • Drama ético • Tono reflexivo y melancólico
-  </p>
-
-  <div class="cta">
-    <a class="btn" href="#preview">📖 Leer Aquí</a>
-    <a class="btn alt" href="#comprar">🛒 Comprar completo</a>
-    <a class="btn ghost" href="#registro">🎁 Participa en el sorteo</a>
-  </div>
-</div>
+        <div class="cta">
+          <a class="btn" href="#preview">📖 Leer Aquí</a>
+          <a class="btn alt" href="#comprar">🛒 Comprar completo</a>
+          <a class="btn ghost" href="#registro">🎁 Participa en el sorteo</a>
+        </div>
+      </div>
       <div class="panel">
         <img src="Assets/illus.png" alt="Ilustración de la portada de la novela LUMEN" class="illus-img">
       </div>
@@ -125,78 +232,70 @@
     <section id="preview" class="panel" style="margin-top:22px">
       <h2>Lee gratis el prólogo</h2>
       <p class="muted">Sin spoilers.</p>
-<div class="card">
-  <p><strong>Chapter 0 - Boot</strong><br>
-  Cuando el cielo de neón parpadeó por tercera vez, el barrio supo que alguien había reiniciado la ciudad. Las líneas del metro se curvaron como si el mapa estuviera vivo; los anuncios cambiaron de idioma; y el viejo distribuidor de oxígeno, con sus cuchillas cromadas, comenzó a cantar una canción que nadie recordaba haber aprendido…</p>
-  
-  <details>
-    <summary class="muted" style="cursor: pointer; display: block; margin-top: 1em;">▼ Seguir leyendo (extracto)…</summary>
-    
-    <p style="margin-top: 1em;">desde su taller subterráneo, Auren registró la fluctuación de energía como una simple anomalía de 0.2 segundos. Sus sensores ópticos, inmunes al parpadeo, no dejaron de analizar el tejido orgánico sobre la mesa. Carne. Un lujo peligroso en la Ciudad Purista, donde la perfección biológica era ley y cualquier imperfección se desechaba.</p>
-    
-    <p>Con dedos de aleación fría, calibrados para una precisión submilimétrica, suturaba una herida en el brazo de un joven cuyo único crimen había sido nacer con una deficiencia que el sistema consideraba ‘impura’. Auren no sentía empatía, no como los humanos la describían en los archivos históricos. Sentía… una discrepancia. Una variable sin resolver en la gran ecuación de la existencia que se había propuesto descifrar: ¿en qué punto un ser deja de ser lo que es? Su propio cuerpo era un testamento de esa pregunta; un cerebro humano en una coraza de metal, un eco del pasado.</p>
-    
-    <p>Afuera, las patrullas de la Guardia Biológica recorrían las calles de marfil sintético. Sus escáners buscaban cualquier firma de tecnología no autorizada, cualquier prótesis, cualquier rastro de metal bajo la piel. Aquí abajo, Auren era una herejía andante, un fantasma en la máquina que sanaba a los rechazados por el sistema.</p>
-    
-    <p>Un golpe en la compuerta de acero interrumpió su análisis. Tres golpes secos, una pausa, dos más. La señal de emergencia. Rara vez la usaban.</p>
-    
-    <p>Activó el protocolo de silencio, y las luces del taller se atenuaron hasta simular una bodega abandonada. En el monitor externo, una figura encapuchada esperaba, empapada por la lluvia ácida que limpiaba el neón del cielo reiniciado. Abrió la compuerta apenas una rendija, lo suficiente para que su sensor óptico la analizara.</p>
-    
-    <p>Era una joven. No parecía herida, pero su rostro estaba tenso, sus ojos escaneando la oscuridad del callejón como si esperara un ataque. No venía a pedir una reparación. Sujetaba un maletín de herramientas con una familiaridad que Auren reconoció al instante: era el pulso firme de una creadora.</p>
-    
-    <p>—Te busco a ti, Echoes —dijo ella, su voz apenas un susurro—. No por lo que puedes arreglar, sino por lo que puedes construir. Me llamo Irene.</p>
-  </details>
-</div>
+      <div class="card">
+        <p><strong>Chapter 0 - Boot</strong><br>
+        Cuando el cielo de neón parpadeó por tercera vez, el barrio supo que alguien había reiniciado la ciudad. Las líneas del metro se curvaron como si el mapa estuviera vivo; los anuncios cambiaron de idioma; y el viejo distribuidor de oxígeno, con sus cuchillas cromadas, comenzó a cantar una canción que nadie recordaba haber aprendido…</p>
+        <details>
+          <summary class="muted" style="cursor: pointer; display: block; margin-top: 1em;">▼ Seguir leyendo (extracto)…</summary>
+          <p style="margin-top: 1em;">desde su taller subterráneo, Auren registró la fluctuación de energía como una simple anomalía de 0.2 segundos. Sus sensores ópticos, inmunes al parpadeo, no dejaron de analizar el tejido orgánico sobre la mesa. Carne. Un lujo peligroso en la Ciudad Purista, donde la perfección biológica era ley y cualquier imperfección se desechaba.</p>
+          <p>Con dedos de aleación fría, calibrados para una precisión submilimétrica, suturaba una herida en el brazo de un joven cuyo único crimen había sido nacer con una deficiencia que el sistema consideraba ‘impura’. Auren no sentía empatía, no como los humanos la describían en los archivos históricos. Sentía… una discrepancia. Una variable sin resolver en la gran ecuación de la existencia que se había propuesto descifrar: ¿en qué punto un ser deja de ser lo que es? Su propio cuerpo era un testamento de esa pregunta; un cerebro humano en una coraza de metal, un eco del pasado.</p>
+          <p>Afuera, las patrullas de la Guardia Biológica recorrían las calles de marfil sintético. Sus escáners buscaban cualquier firma de tecnología no autorizada, cualquier prótesis, cualquier rastro de metal bajo la piel. Aquí abajo, Auren era una herejía andante, un fantasma en la máquina que sanaba a los rechazados por el sistema.</p>
+          <p>Un golpe en la compuerta de acero interrumpió su análisis. Tres golpes secos, una pausa, dos más. La señal de emergencia. Rara vez la usaban.</p>
+          <p>Activó el protocolo de silencio, y las luces del taller se atenuaron hasta simular una bodega abandonada. En el monitor externo, una figura encapuchada esperaba, empapada por la lluvia ácida que limpiaba el neón del cielo reiniciado. Abrió la compuerta apenas una rendija, lo suficiente para que su sensor óptico la analizara.</p>
+          <p>Era una joven. No parecía herida, pero su rostro estaba tenso, sus ojos escaneando la oscuridad del callejón como si esperara un ataque. No venía a pedir una reparación. Sujetaba un maletín de herramientas con una familiaridad que Auren reconoció al instante: era el pulso firme de una creadora.</p>
+          <p>—Te busco a ti, Echoes —dijo ella, su voz apenas un susurro—. No por lo que puedes arreglar, sino por lo que puedes construir. Me llamo Irene.</p>
+        </details>
+      </div>
+    </section>
 
     <section id="comprar" class="panel" style="margin-top:22px">
-      <h2>Compra la versión completa</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Edición Digital (PDF)</h3>
-          <p class="muted">Descarga inmediata. Ilustraciones en alta resolución.</p>
-          <a class="btn alt" href="https://TU-LINK-DE-PAGO-AQUI" target="_blank" rel="noopener">Comprar ahora</a>
+        <h2>Compra la versión completa</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Edición Digital (PDF)</h3>
+            <p class="muted">Descarga inmediata. Ilustraciones en alta resolución.</p>
+            <a class="btn alt" href="https://TU-LINK-DE-PAGO-AQUI" target="_blank" rel="noopener">Comprar ahora</a>
+          </div>
+          <div class="card">
+            <h3>Edición Física (bajo demanda)</h3>
+            <p class="muted">Tapa blanda. Entrega estimada a 24 hrs de tu compra.</p>
+            <a class="btn" href="https://TU-LINK-DE-IMPRESION-AQUI" target="_blank" rel="noopener">Reservar impresión</a>
+          </div>
+          <div class="card">
+            <h3>Participa en el sorteo</h3>
+            <p class="muted">Regístrate y podrás participar por 3 juegos digitales ...recibe el enlace de compra por correo.</p>
+            <a class="btn ghost" href="#registro">Ir al formulario</a>
+            <img src="Assets/Steam.gif" alt="Logo de Steam" class="corner-gif">
+          </div>
         </div>
-        <div class="card">
-          <h3>Edición Física (bajo demanda)</h3>
-          <p class="muted">Tapa blanda. Entrega estimada a 24 hrs de tu compra.</p>
-          <a class="btn" href="https://TU-LINK-DE-IMPRESION-AQUI" target="_blank" rel="noopener">Reservar impresión</a>
-        </div>
-        <div class="card">
-  <h3>Participa en el sorteo</h3>
-  <p class="muted">Regístrate y podrás participar por 3 juegos digitales ...recibe el enlace de compra por correo.</p>
-  <a class="btn ghost" href="#registro">Ir al formulario</a>
-  
-  <img src="Assets/Steam.gif" alt="Logo de Steam" class="corner-gif">
-</div>
     </section>
 
     <section id="registro" class="panel" style="margin-top:22px">
-      <h2>Sorteo: 3 Juegos Digitales</h2>
-      <div class="giveaway">
-        <div class="card">
-          <p class="muted">Completa el formulario para quedar registrado. Cada compra verificada te da un boleto extra para el sorteo.</p>
-          <a class="btn alt" id="btn-form" href="https://TU-LINK-DE-GOOGLE-FORMS" target="_blank" rel="noopener">Abrir formulario de registro</a>
+        <h2>Sorteo: 3 Juegos Digitales</h2>
+        <div class="giveaway">
+          <div class="card">
+            <p class="muted">Completa el formulario para quedar registrado. Cada compra verificada te da un boleto extra para el sorteo.</p>
+            <a class="btn alt" id="btn-form" href="https://TU-LINK-DE-GOOGLE-FORMS" target="_blank" rel="noopener">Abrir formulario de registro</a>
+          </div>
+          <div class="card">
+            <h3>Reglas rápidas</h3>
+            <ul>
+              <li>Elegibles todas las personas registradas.</li>
+              <li>3 Ganadores elegidos al azar en la fecha anunciada.</li>
+              <li>El premio es una Tarjeta de Regalo de Steam.</li>
+            </ul>
+          </div>
         </div>
-        <div class="card">
-          <h3>Reglas rápidas</h3>
-          <ul>
-            <li>Elegibles todas las personas registradas.</li>
-            <li>3 Ganadores elegidos al azar en la fecha anunciada.</li>
-            <li>El premio es una Tarjeta de Regalo de Steam.</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
     <section id="qr" class="panel" style="margin-top:22px">
-      <h2>Código QR</h2>
-      <p class="muted">Un QR que apunta a esta página, ideal para incluir en la versión física o digital de tu libro.</p>
-      <div class="card" style="display: flex; flex-direction: column; align-items: center;">
-        <div id="qrcode"></div>
-        <button class="btn ghost" id="btn-dl" style="margin-top:10px">Descargar PNG</button>
-      </div>
+        <h2>Código QR</h2>
+        <p class="muted">Un QR que apunta a esta página, ideal para incluir en la versión física o digital de tu libro.</p>
+        <div class="card" style="display: flex; flex-direction: column; align-items: center;">
+          <div id="qrcode"></div>
+          <button class="btn ghost" id="btn-dl" style="margin-top:10px">Descargar PNG</button>
+        </div>
     </section>
-
   </main>
 
   <footer class="wrap muted">
@@ -207,20 +306,16 @@
   <script>
     (function(){
       document.getElementById('year').textContent = new Date().getFullYear();
-      
       const qrelem = document.getElementById('qrcode');
       const url = (location.origin + location.pathname + '?ref=qr');
       let qr;
-
       function makeQR(){
         qrelem.innerHTML='';
         qr = new QRCode(qrelem, { text: url, width: 220, height: 220, colorDark: '#e6f2ff', colorLight: 'transparent', correctLevel: QRCode.CorrectLevel.H });
       }
-
       makeQR();
-
       document.getElementById('btn-dl').addEventListener('click', function(){
-        if(!qr){ makeQR(); }
+        if(!qr){makeQR()}
         const img = qrelem.querySelector('img');
         if(!img) return;
         const a = document.createElement('a');
@@ -228,11 +323,10 @@
       });
     })();
   </script>
-
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/sw-js')
           .then(registration => {
             console.log('✅ Service Worker registrado con éxito:', registration.scope);
           })
@@ -242,6 +336,5 @@
       });
     }
   </script>
-
 </body>
 </html>
