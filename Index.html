@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Portada+de+LUMEN" />
   <meta name="theme-color" content="#0ff" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     /* --- DECLARACIÓN DE FUENTES PERSONALIZADAS --- */
@@ -120,7 +120,7 @@
     
     /* --- ESTILO DEL BOTÓN DE INSTALACIÓN --- */
     #install-button {
-      display: none; /* Oculto por defecto */
+      display: none;
       background-color: var(--accent);
       color: #fff;
       border: none;
@@ -228,15 +228,14 @@
   
   <header>
     <div class="wrap brand">
-  <div style="display: flex; align-items: center; gap: 12px;">
-    <div class="logo" aria-hidden="true"></div>
-    <div>
-      <strong><span id="main-title">LUMEN</span></strong><br><span class="muted">One Shot</span>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <strong><span id="main-title">LUMEN</span></strong><br><span class="muted">One Shot</span>
+        </div>
+      </div>
+      <button id="install-button" style="margin-left: auto;">Instalar App</button>
     </div>
-  </div>
-
-  <button id="install-button" style="margin-left: auto;">Instalar App</button>
-</div>
   </header>
 
   <main class="wrap">
@@ -255,7 +254,7 @@
         <div class="cta">
           <a class="btn" href="#preview"><span>📖 Leer Aquí</span></a>
           <a class="btn alt" href="#comprar"><span>🛒 Comprar completo</span></a>
-          <a class="btn ghost" href="#registro"><span>🎁 Participa en el sorteo</span></a>
+          <a class="btn ghost" href="https://forms.gle/BjHFKq8PUEgPH3bK9" target="_blank" rel="noopener"><span>🎁 Participa en el sorteo</span></a>
         </div>
       </div>
       <div class="panel">
@@ -298,8 +297,8 @@
           <div class="card">
             <h3>Participa en el sorteo</h3>
             <p class="muted">Regístrate y podrás participar por 3 juegos digitales ...recibe el enlace de compra por correo.</p>
-            <a class="btn ghost" href="#registro"><span>Ir al formulario</span></a>
-            <img src="Assets/Steam.gif" alt="Logo de Steam" class="corner-gif">
+            <a class="btn ghost" href="https://forms.gle/BjHFKq8PUEgPH3bK9" target="_blank" rel="noopener"><span>Ir al formulario</span></a>
+            <img src="Assets/steam.png" alt="Logo de Steam" class="corner-gif">
           </div>
         </div>
     </section>
@@ -309,7 +308,7 @@
         <div class="giveaway">
           <div class="card">
             <p class="muted">Completa el formulario para quedar registrado. Cada compra verificada te da un boleto extra para el sorteo.</p>
-            <a class="btn alt" id="btn-form" href="https://TU-LINK-DE-GOOGLE-FORMS" target="_blank" rel="noopener"><span>Abrir formulario de registro</span></a>
+            <a class="btn alt" id="btn-form" href="https://forms.gle/BjHFKq8PUEgPH3bK9" target="_blank" rel="noopener"><span>Abrir formulario de registro</span></a>
           </div>
           <div class="card">
             <h3>Reglas rápidas</h3>
@@ -324,7 +323,6 @@
 
     <section id="qr" class="panel" style="margin-top:22px">
         <h2>Código QR</h2>
-        <p class="muted">Un QR que apunta a esta página, ideal para incluir en la versión física o digital de tu libro.</p>
         <div class="card" style="display: flex; flex-direction: column; align-items: center;">
           <div id="qrcode"></div>
           <button class="btn ghost" id="btn-dl" style="margin-top:10px"><span>Descargar PNG</span></button>
@@ -360,12 +358,12 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw-js')
+        navigator.serviceWorker.register('/sw.js')
           .then(registration => {
-            console.log('Service Worker registrado con éxito:', registration.scope);
+            console.log('✅ Service Worker registrado con éxito:', registration.scope);
           })
           .catch(error => {
-            console.log(' Error al registrar el Service Worker:', error);
+            console.log('❌ Error al registrar el Service Worker:', error);
           });
       });
     }
