@@ -144,6 +144,7 @@
       height: 100%;
       z-index: -1;
       overflow: hidden;
+      position: relative; /* This should be fixed */
     }
     #video-background::after {
       content: '';
@@ -261,7 +262,7 @@
         <img src="Assets/illus.png" alt="Ilustración de la portada de la novela LUMEN" class="illus-img">
       </div>
     </section>
-
+    
     <section id="preview" class="panel" style="margin-top:22px">
       <h2>Lee gratis el prólogo</h2>
       <p class="muted">Sin spoilers.</p>
@@ -337,22 +338,54 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-Y5t8s8qQIS8t4sZ9xH5f6J0Eo2QmFG9t1mL2F4mQnKf5m7F9d7JQh2Jq2b3vB5J0tTt8r8z2Z2Qkqf5m8nq+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     (function(){
+      // Dejamos esta parte del año igual
       document.getElementById('year').textContent = new Date().getFullYear();
+      
+      // --- LÓGICA DEL QR CORREGIDA ---
       const qrelem = document.getElementById('qrcode');
+      const downloadBtn = document.getElementById('btn-dl');
       const url = (location.origin + location.pathname + '?ref=qr');
       let qr;
+
       function makeQR(){
-        qrelem.innerHTML='';
-        qr = new QRCode(qrelem, { text: url, width: 220, height: 220, colorDark: '#e6f2ff', colorLight: 'transparent', correctLevel: QRCode.CorrectLevel.H });
+        if (!qrelem) return; // Si no existe el div, no hace nada
+        
+        try {
+          qrelem.innerHTML = '';
+          qr = new QRCode(qrelem, { 
+            text: url, 
+            width: 220, 
+            height: 220, 
+            colorDark: '#e6f2ff', 
+            colorLight: 'transparent', 
+            correctLevel: QRCode.CorrectLevel.H 
+          });
+          // Si el QR se crea bien, muestra el botón de descarga
+          if(downloadBtn) downloadBtn.style.display = 'inline-block';
+        } catch (e) {
+          console.error("Error al generar el QR:", e);
+          if(qrelem) qrelem.innerHTML = "Error al cargar el código QR.";
+        }
       }
+
+      // Intenta generar el QR al cargar la página
       makeQR();
-      document.getElementById('btn-dl').addEventListener('click', function(){
-        if(!qr){makeQR()}
-        const img = qrelem.querySelector('img');
-        if(!img) return;
-        const a = document.createElement('a');
-        a.href = img.src; a.download = 'qr-lumen-novela.png'; a.click();
-      });
+
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e){
+          e.preventDefault(); // Previene cualquier comportamiento por defecto del enlace
+          if(!qr){ makeQR(); }
+          const img = qrelem.querySelector('img');
+          if(!img) {
+            console.error("No se encontró la imagen del QR para descargar.");
+            return;
+          }
+          const a = document.createElement('a');
+          a.href = img.src; 
+          a.download = 'qr-lumen-novela.png'; 
+          a.click();
+        });
+      }
     })();
   </script>
   <script>
